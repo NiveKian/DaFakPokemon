@@ -10,7 +10,10 @@ const getPokemon = async (pokeID) => {
   };
 
   try {
-    const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokeID}`, options);
+    const response = await fetch(
+      `https://pokeapi.co/api/v2/pokemon/${pokeID}`,
+      options
+    );
     const poke = await response.json();
     return poke;
   } catch (e) {
@@ -23,28 +26,42 @@ const randPokeId = () => {
 };
 
 const changePoke = async () => {
-  var pokemonId = randPokeId();
+  let pokemonId = randPokeId();
   pokemon = await getPokemon(pokemonId);
   pokemonName = pokemon.name;
   document.getElementById("pokeImg").src = pokemon.sprites.front_default;
 };
 
-const isPoke = () => {
-  var pog = document.getElementById("pokeInput").value.toLowerCase();
+const submit = () => {
+  let pog = document.getElementById("pokeInput").value.toLowerCase();
   response(pog == pokemonName);
 };
 
 const response = (valor) => {
+  let bord = document.getElementById("pbox");
+  let but = document.getElementById("but")
+
   if (valor) {
-    console.log("You gotted");
+    bord.style.border = "10px solid #22ff00";
+    but.style.backgroundColor = "#22ff00";
+    but.innerText = "New";
     right++;
   } else {
-    console.log("Your wrong buddy");
+    bord.style.border = "10px solid #ff9900";
+    but.style.backgroundColor = "#ff9900";
+    but.innerText = "New";
     wrong++;
   }
 
+  but.onclick = newPoke;
+};
+
+const newPoke = () => {
+  document.getElementById("pbox").style.border = "";
+  document.getElementById("but").style.backgroundColor = "#1b1d1c";
+  document.getElementById("but").innerText = "Submit";
+  document.getElementById("but").onclick = submit;
   changePoke();
 };
 
-// INIT //
 changePoke();

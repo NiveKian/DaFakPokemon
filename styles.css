@@ -1,7 +1,7 @@
 /* CORPO */
 
 body {
-  background-color: crimson;
+  background-color: #cc1313;
 }
 
 /* CONTAINERS */
@@ -24,7 +24,6 @@ body {
 }
 
 .pbox {
-  border: 10px solid #ffffff00;
   border-radius: 8px;
   background-color: #2ad9ec;
   width: 700px;

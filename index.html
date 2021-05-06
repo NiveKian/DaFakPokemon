@@ -13,21 +13,25 @@
         <img src="assets/pokemon.png" alt="Title" width="75%" height="70%" />
       </div>
       <div class="tong">
-        <div class="tong pbox">
+        <div id="pbox" class="tong pbox">
           <img id="pokeImg" width="alt" height="100%" />
         </div>
       </div>
       <div class="tong">
-        <form onsubmit="isPoke()">
-          <input
-            id="pokeInput"
-            class="input"
-            type="text"
-            name="pname"
-            placeholder="Pokemon"
-          />
-        </form>
-        <button class="button buttonS">Next</button>
+        <input
+          id="pokeInput"
+          class="input"
+          type="text"
+          name="pname"
+          placeholder="Pokemon"
+          on
+        />
+        <button id="but" class="button buttonS" onclick="submit()">
+          Submit
+        </button>
+      </div>
+      <div class="tong">
+        
       </div>
     </div>
     <script src="src/main.js"></script>
