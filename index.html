@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <title>Dafak's this pokemon?</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="tong">
+        <img src="assets/pokemon.png" alt="Title" width="75%" height="70%" />
+      </div>
+      <div class="tong">
+        <div class="tong pbox">
+          <img id="pokeImg" width="alt" height="100%" />
+        </div>
+      </div>
+      <div class="tong">
+        <form onsubmit="isPoke()">
+          <input
+            id="pokeInput"
+            class="input"
+            type="text"
+            name="pname"
+            placeholder="Pokemon"
+          />
+        </form>
+        <button class="button buttonS">Next</button>
+      </div>
+    </div>
+    <script src="src/main.js"></script>
+  </body>
+</html>
