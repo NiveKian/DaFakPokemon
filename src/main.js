@@ -1,7 +1,9 @@
-var pokemonName = "";
+// Some usefull variables
+var pokemon;
 var right = 0;
 var wrong = 0;
 
+// Function to request pokemon data
 const getPokemon = async (pokeID) => {
   const options = {
     method: "GET",
@@ -21,25 +23,54 @@ const getPokemon = async (pokeID) => {
   }
 };
 
+// Generates random pokemon ID
 const randPokeId = () => {
   return Math.floor(Math.random() * 893) + 1;
 };
 
+// Draw the pokemon on the canvas
+const drawImg = (source, black = false) => {
+  var canvas = document.getElementById("pokeImg");
+  var ctx = canvas.getContext("2d");
+  var img = new Image();
+  img.crossOrigin = "Anonymous";
+  img.src = source;
+  img.onload = function (e) {
+    // Clear and draw an new image
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.drawImage(img, 10, 10, 400, 400);
+
+    // Transforms the image to hide the pokemon
+    if (black) {
+      var pixelData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+      for (let i = 0; i < pixelData.data.length; i += 4) {
+        pixelData.data[i] = 0;
+        pixelData.data[i + 1] = 0;
+        pixelData.data[i + 2] = 0;
+      }
+      ctx.putImageData(pixelData, 0, 0);
+    }
+  };
+};
+
+// Change the current pokemon
 const changePoke = async () => {
   let pokemonId = randPokeId();
   pokemon = await getPokemon(pokemonId);
-  pokemonName = pokemon.name;
-  document.getElementById("pokeImg").src = pokemon.sprites.front_default;
+  drawImg(pokemon.sprites.front_default,true);
 };
 
+// Submit pokemon name
 const submit = () => {
   let pog = document.getElementById("pokeInput").value.toLowerCase();
-  response(pog == pokemonName);
+  response(pog == pokemon.name);
 };
 
+// Code response to the submit
 const response = (valor) => {
+  drawImg(pokemon.sprites.front_default);
   let bord = document.getElementById("pbox");
-  let but = document.getElementById("but")
+  let but = document.getElementById("but");
 
   if (valor) {
     bord.style.border = "10px solid #22ff00";
@@ -56,6 +87,7 @@ const response = (valor) => {
   but.onclick = newPoke;
 };
 
+// Generates new pokemon on the page
 const newPoke = () => {
   document.getElementById("pbox").style.border = "";
   document.getElementById("but").style.backgroundColor = "#1b1d1c";
@@ -64,4 +96,5 @@ const newPoke = () => {
   changePoke();
 };
 
+// INIT
 changePoke();
