@@ -1,7 +1,7 @@
-// Some usefull variables
-var pokemon;
-var right = 0;
-var wrong = 0;
+// Some useful variables
+let pokemon;
+let right = 0;
+let wrong = 0;
 
 // Function to request pokemon data
 const getPokemon = async (pokeID) => {
@@ -57,7 +57,7 @@ const drawImg = (source, black = false) => {
 const changePoke = async () => {
   let pokemonId = randPokeId();
   pokemon = await getPokemon(pokemonId);
-  drawImg(pokemon.sprites.front_default,true);
+  drawImg(pokemon.sprites.front_default, true);
 };
 
 // Submit pokemon name
